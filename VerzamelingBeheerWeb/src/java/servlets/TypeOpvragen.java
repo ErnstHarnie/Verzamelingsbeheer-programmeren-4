@@ -38,13 +38,18 @@ public class TypeOpvragen extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           
+           try {
         List<VerzamelingsType> types = TypeService.GetAllTypes();
         
         request.getSession().setAttribute("t", types);
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("ToonTypes.jsp");
         dispatcher.forward(request, response);
+           }
+           catch (ExceptionInInitializerError ex)
+           {
+               
+           }
    
     }
 

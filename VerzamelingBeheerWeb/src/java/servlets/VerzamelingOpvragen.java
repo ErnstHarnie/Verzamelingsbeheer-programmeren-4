@@ -40,6 +40,7 @@ public class VerzamelingOpvragen extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
            
+        try {
         List<Verzameling> verzamelingen = VerzamelingService.GetAllVerzamelingen();
         List<Categorie> categorieën = CategorieService.GetAllCategories();
         List<VerzamelingsType> types = TypeService.GetAllTypes();
@@ -50,6 +51,11 @@ public class VerzamelingOpvragen extends HttpServlet {
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("ToonVerzamelingen.jsp");
         dispatcher.forward(request, response);
+        }
+        catch (ExceptionInInitializerError ex)
+        {
+            
+        }
    
     }
 

@@ -38,13 +38,19 @@ public class CategorieOpvragen extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           
+           try {
         List<Categorie> categorieën = CategorieService.GetAllCategories();
         
         request.getSession().setAttribute("c", categorieën);
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("ToonCategorieen.jsp");
         dispatcher.forward(request, response);
+           }
+           catch (ExceptionInInitializerError ex)
+           {
+              
+           }
+
    
     }
 
