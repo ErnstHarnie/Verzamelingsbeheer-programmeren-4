@@ -24,7 +24,6 @@ public class CategorieService {
             session.beginTransaction();
             session.saveOrUpdate(categorie);
             session.getTransaction().commit();
-            session.close();
             return categorie;
         } catch (Exception ex) {
             return null;
