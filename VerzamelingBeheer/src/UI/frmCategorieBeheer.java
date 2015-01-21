@@ -267,7 +267,6 @@ public final class frmCategorieBeheer extends javax.swing.JFrame {
             categorie.setId(Integer.parseInt(lblId.getText()));
             categorie.setNaam(txtEditNaam.getText());
             CategorieService.CategorieOpslaan(categorie);
-            ClearTextboxes();
             RefreshList();
         }
 
