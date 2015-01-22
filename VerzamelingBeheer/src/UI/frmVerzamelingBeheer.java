@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 import static javax.swing.JOptionPane.YES_NO_CANCEL_OPTION;
+import javax.swing.UIManager;
 
 /**
  *
@@ -28,7 +29,9 @@ public final class frmVerzamelingBeheer extends javax.swing.JFrame {
     public frmVerzamelingBeheer() {
         try {
         initComponents();
+        
         lblId.setVisible(false);
+
         pnlEdit.setVisible(false);
 
         for (VerzamelingsType type : TypeService.GetAllTypes()) {
@@ -42,6 +45,11 @@ public final class frmVerzamelingBeheer extends javax.swing.JFrame {
             cmbEditCategorie.addItem(new Categorie(categorie.getId(), categorie.getNaam()));
         }
         
+        //vertaling voor JOptionpane
+   UIManager.put("OptionPane.cancelButtonText", "Annuleren");
+    UIManager.put("OptionPane.noButtonText", "Nee");
+    UIManager.put("OptionPane.okButtonText", "Oke");
+    UIManager.put("OptionPane.yesButtonText", "Ja");
                 
         this.setTitle("Verzamelingen beheren - Verzamelingenbeheer");
         

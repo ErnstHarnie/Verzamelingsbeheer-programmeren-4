@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 import static javax.swing.JOptionPane.YES_NO_CANCEL_OPTION;
+import javax.swing.UIManager;
 
 /**
  *
@@ -26,6 +27,12 @@ public final class frmCategorieBeheer extends javax.swing.JFrame {
         initComponents();
         lblId.setVisible(false);
         pnlEdit.setVisible(false);
+        
+                //vertaling voor JOptionpane
+   UIManager.put("OptionPane.cancelButtonText", "Annuleren");
+    UIManager.put("OptionPane.noButtonText", "Nee");
+    UIManager.put("OptionPane.okButtonText", "Oke");
+    UIManager.put("OptionPane.yesButtonText", "Ja");
         ClearTextboxes();
         RefreshList();
         this.setTitle("Categorieën beheren - Verzamelingenbeheer");

@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 import static javax.swing.JOptionPane.YES_NO_CANCEL_OPTION;
+import javax.swing.UIManager;
 
 /**
  *
@@ -29,6 +30,12 @@ public final class frmTypeBeheer extends javax.swing.JFrame {
         pnlEdit.setVisible(false);
         
         this.setTitle("Types beheren - Verzamelingenbeheer");
+        
+                //vertaling voor JOptionpane
+   UIManager.put("OptionPane.cancelButtonText", "Annuleren");
+    UIManager.put("OptionPane.noButtonText", "Nee");
+    UIManager.put("OptionPane.okButtonText", "Oke");
+    UIManager.put("OptionPane.yesButtonText", "Ja");
         
         RefreshList();
         }
