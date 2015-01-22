@@ -10,6 +10,8 @@ import BLL.VerzamelingsType;
 import Services.TypeService;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.QUESTION_MESSAGE;
+import static javax.swing.JOptionPane.YES_NO_CANCEL_OPTION;
 
 /**
  *
@@ -180,8 +182,8 @@ public final class frmTypeBeheer extends javax.swing.JFrame {
                         .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(438, 438, 438))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,9 +191,10 @@ public final class frmTypeBeheer extends javax.swing.JFrame {
                                         .addComponent(btnToevoegen, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(txtNaam)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(30, 30, 30))
+                            .addComponent(jScrollPane1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -273,15 +276,20 @@ public final class frmTypeBeheer extends javax.swing.JFrame {
 
     private void btnVerwijderenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerwijderenActionPerformed
 
+         int reply = JOptionPane.showConfirmDialog(null, "Weet u zeker dat u het type '" + txtEditNaam.getText() + "' wilt verwijderen uit de lijst verzamelingen?", "Type verwijderen", YES_NO_CANCEL_OPTION, QUESTION_MESSAGE);
+        if (reply == JOptionPane.YES_OPTION)   
+        {
         if (TypeService.TypeVerwijderen(Integer.parseInt(lblId.getText()))) {
 
         } else {
             JOptionPane.showMessageDialog(null, txtEditNaam.getText() + " kan niet verwijderd worden.", "Fout bij verwijderen", ERROR_MESSAGE);
         }
+        
 
         pnlEdit.setVisible(false);
         pnlEdit.validate();
         pnlEdit.repaint();
+        }
         RefreshList();
     }//GEN-LAST:event_btnVerwijderenActionPerformed
 

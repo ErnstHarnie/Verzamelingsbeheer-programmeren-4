@@ -9,6 +9,8 @@ import BLL.Categorie;
 import Services.CategorieService;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.QUESTION_MESSAGE;
+import static javax.swing.JOptionPane.YES_NO_CANCEL_OPTION;
 
 /**
  *
@@ -274,6 +276,9 @@ public final class frmCategorieBeheer extends javax.swing.JFrame {
 
     private void btnVerwijderenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerwijderenActionPerformed
 
+         int reply = JOptionPane.showConfirmDialog(null, "Weet u zeker dat u de categorie '" + txtEditNaam.getText() + "' wilt verwijderen uit de lijst verzamelingen?", "Categorie verwijderen", YES_NO_CANCEL_OPTION, QUESTION_MESSAGE);
+        if (reply == JOptionPane.YES_OPTION)   
+        {
         if (CategorieService.CategorieVerwijderen(Integer.parseInt(lblId.getText()))) {
             pnlEdit.setVisible(false);
             pnlEdit.validate();
@@ -284,6 +289,7 @@ public final class frmCategorieBeheer extends javax.swing.JFrame {
         else
         {
             JOptionPane.showMessageDialog(null, txtEditNaam.getText() + " kan niet verwijderd worden.", "Kan categorie niet verwijderen", ERROR_MESSAGE);
+        }
         }
 
     }//GEN-LAST:event_btnVerwijderenActionPerformed
