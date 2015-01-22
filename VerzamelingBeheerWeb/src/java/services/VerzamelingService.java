@@ -17,39 +17,30 @@ import java.util.List;
  * @author Ernst
  */
 public class VerzamelingService {
-    public static Verzameling VerzamelingOpslaan(Verzameling verzameling)
-    {
-        Session session = NewHibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        session.saveOrUpdate(verzameling);
-        session.getTransaction().commit();
-        session.close();
-        return verzameling;
-    }
-    
-    public static void VerzamelingVerwijderen(int Id)
-    {
-        Session session = NewHibernateUtil.getSessionFactory().openSession();
-        Query q = session.createQuery("from Verzameling verzameling where verzameling.id="+Id);
-        Verzameling verzameling = (Verzameling)q.uniqueResult();
-        session.beginTransaction();
-        session.delete(verzameling);
-        session.getTransaction().commit();
-        session.close();
-    }
  
     
         public static Verzameling GetVerzameling(int Id)
     {
         Session session = 
               NewHibernateUtil.getSessionFactory().openSession();
-         Query q = session.createQuery("from Verzameling verzameling where verzameling.id="+Id);
+        try {
+                     Query q = session.createQuery("from Verzameling verzameling where verzameling.id="+Id);
          return (Verzameling)q.uniqueResult();
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+        finally {
+            session.close();
+        }
+
     }
         
         
         public static String ConvertJaNee(boolean isInBezit)
         {
+
             if (Boolean.toString(isInBezit).matches("true"))
             {
                 return "Ja";
@@ -65,8 +56,18 @@ public class VerzamelingService {
         public static List<Verzameling> GetAllVerzamelingen()
         {
             Session session = NewHibernateUtil.getSessionFactory().openSession();
-            Query q = session.createQuery("from Verzameling v order by v.inBezit asc");
+            try {
+                            Query q = session.createQuery("from Verzameling v order by v.inBezit asc");
             return q.list();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally {
+                session.close();
+            }
+
         }
     
 }

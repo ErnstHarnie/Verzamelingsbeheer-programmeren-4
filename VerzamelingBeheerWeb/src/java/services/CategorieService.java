@@ -17,36 +17,33 @@ import org.hibernate.Session;
  */
 public class CategorieService {
 
-    public static Categorie CategorieOpslaan(Categorie categorie) {
-        Session session = NewHibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        session.saveOrUpdate(categorie);
-        session.getTransaction().commit();
-        session.close();
-        return categorie;
-    }
-
-    public static void CategorieVerwijderen(int Id) {
-        Session session = NewHibernateUtil.getSessionFactory().openSession();
-        Query q = session.createQuery("from Categorie categorie where categorie.id=" + Id);
-        Categorie categorie = (Categorie) q.uniqueResult();
-        session.beginTransaction();
-        session.delete(categorie);
-        session.getTransaction().commit();
-        session.close();
-    }
 
     public static Categorie GetCategorie(int Id) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
-        Query q = session.createQuery("from Categorie categorie where categorie.id = " + Id);
-        return (Categorie) q.uniqueResult();
-    }
-    
+        try {
+            Query q = session.createQuery("from Categorie categorie where categorie.id = " + Id);
+            return (Categorie) q.uniqueResult();
+        } catch (Exception ex) {
+            return null;
+        } finally {
+            session.close();
+        }
 
+    }
 
     public static List<Categorie> GetAllCategories() {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
-        Query q = session.createQuery("from Categorie");
-        return q.list();
+        try {
+            Query q = session.createQuery("from Categorie");
+            return q.list();
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+        finally {
+            session.close();
+        }
+
     }
 }
