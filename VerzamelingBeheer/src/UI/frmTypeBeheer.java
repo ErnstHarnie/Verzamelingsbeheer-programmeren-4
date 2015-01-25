@@ -199,9 +199,12 @@ public final class frmTypeBeheer extends javax.swing.JFrame {
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(txtNaam)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
                                 .addGap(30, 30, 30))
-                            .addComponent(jScrollPane1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -238,6 +241,9 @@ public final class frmTypeBeheer extends javax.swing.JFrame {
             VerzamelingsType type = new VerzamelingsType();
             type.setNaam(txtNaam.getText());
             TypeService.TypeOpslaan(type);
+            ClearTextboxes();
+            pnlEdit.setVisible(false);
+            pnlEdit.repaint();
             RefreshList();
         }
 
@@ -287,7 +293,8 @@ public final class frmTypeBeheer extends javax.swing.JFrame {
         if (reply == JOptionPane.YES_OPTION)   
         {
         if (TypeService.TypeVerwijderen(Integer.parseInt(lblId.getText()))) {
-
+            pnlEdit.setVisible(false);
+            this.repaint();
         } else {
             JOptionPane.showMessageDialog(null, txtEditNaam.getText() + " kan niet verwijderd worden.", "Fout bij verwijderen", ERROR_MESSAGE);
         }

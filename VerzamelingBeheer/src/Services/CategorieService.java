@@ -89,9 +89,19 @@ public static Categorie GetCategorie(int Id) {
 
         public static Categorie GetCategorieObject(Categorie categorie) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
-        Query q = session.createQuery("from Categorie categorie where categorie = " + categorie);
+        try {
+                    Query q = session.createQuery("from Categorie categorie where categorie = " + categorie);
        session.close();
         return (Categorie) q.uniqueResult();
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+        finally {
+            session.close();
+        }
+
         
     }
 }
