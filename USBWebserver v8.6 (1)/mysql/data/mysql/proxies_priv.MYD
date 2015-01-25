@@ -1,3 +1,6 @@
 ˇlocalhost                                                                                                                                                                           root                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       Q›èœ2014-12-17 14:28:17 5356 [Note] Event Scheduler: Loaded 0 events
 2014-12-17 14:28:17 5356 [Note] C:\Users\Ernst\Downloads\Programmeren 4\USBWebserver v8.6 (1)/mysql/bin/mysqld_usbwv8.exe: ready for connections.
 Version: '5.6.13'  socket: ''  port: 3307  MySQL Community Server (GPL)
+2015-01-25 10:21:32 7016 [Note] Event Scheduler: Loaded 0 events
+2015-01-25 10:21:32 7016 [Note] C:\Users\Ernst\Downloads\Programmeren 4\USBWebserver v8.6 (1)/mysql/bin/mysqld_usbwv8.exe: ready for connections.
+Version: '5.6.13'  socket: ''  port: 3307  MySQL Community Server (GPL)
